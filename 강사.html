@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>김성희 강사 - 테크 아카데미</title>
+    <style>
+        @font-face {
+            font-family: 'Paybooc';
+            src: url('./paybooc_font/paybooc Light.ttf') format('truetype');
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: 'Paybooc';
+            src: url('./paybooc_font/paybooc Medium.ttf') format('truetype');
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: 'Paybooc';
+            src: url('./paybooc_font/paybooc Bold.ttf') format('truetype');
+            font-weight: 700;
+        }
+
+        @font-face {
+            font-family: 'Paybooc';
+            src: url('./paybooc_font/paybooc ExtraBold.ttf') format('truetype');
+            font-weight: 800;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Paybooc', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background: #f8fafc;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            font-family: 'Paybooc', sans-serif;
+            cursor: pointer;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 3rem 2rem;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            font-family: 'Paybooc', sans-serif;
+            line-height: 1.2;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.2));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 0.9rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'Paybooc', sans-serif;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            background: #059669;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-secondary {
+            display: inline-block;
+            background: transparent;
+            color: white;
+            padding: 0.9rem 2.5rem;
+            border: 2px solid white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'Paybooc', sans-serif;
+            transition: all 0.3s;
+            cursor: pointer;
+            margin-left: 1rem;
+        }
+
+        .cta-secondary:hover {
+            background: white;
+            color: #1e3a8a;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #1e3a8a;
+            font-weight: 800;
+            font-family: 'Paybooc', sans-serif;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            font-family: 'Paybooc', sans-serif;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* Career Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: #3b82f6;
+        }
+
+        .timeline-item {
+            margin-bottom: 2rem;
+            width: 48%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            margin-left: 0;
+            text-align: right;
+            padding-right: 4%;
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: 52%;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #3b82f6;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            border-left: none;
+            border-right: 4px solid #3b82f6;
+        }
+
+        .timeline-year {
+            color: #1e3a8a;
+            font-weight: 700;
+            font-family: 'Paybooc', sans-serif;
+            font-size: 1.1rem;
+        }
+
+        .timeline-title {
+            color: #1e3a8a;
+            font-weight: 700;
+            font-family: 'Paybooc', sans-serif;
+            margin: 0.5rem 0;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #3b82f6;
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-card h3 {
+            color: #1e3a8a;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+            font-family: 'Paybooc', sans-serif;
+        }
+
+        /* Achievements Section */
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .achievement-card {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #2563eb;
+        }
+
+        .achievement-card h3 {
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            font-family: 'Paybooc', sans-serif;
+        }
+
+        .achievement-card p {
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        /* Courses Taught */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .course-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+            padding: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .course-body {
+            padding: 1.5rem;
+        }
+
+        .course-body h3 {
+            color: #1e3a8a;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+            font-family: 'Paybooc', sans-serif;
+        }
+
+        .course-body p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Stats */
+        .stats-container {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 3rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+            font-family: 'Paybooc', sans-serif;
+        }
+
+        .stat-item p {
+            opacity: 0.9;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            color: #1e3a8a;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item h3 {
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            font-family: 'Paybooc', sans-serif;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e3a8a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 0;
+            }
+
+            .timeline-item {
+                width: 100%;
+                margin-left: 0 !important;
+                text-align: left !important;
+                padding-left: 3rem !important;
+                padding-right: 0 !important;
+            }
+
+            .timeline-content {
+                border-left: 4px solid #3b82f6 !important;
+                border-right: none !important;
+            }
+
+            .cta-secondary {
+                display: block;
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">💻 Tech Academy</div>
+            <div>
+                <a href="index.html" style="margin-right: 2rem;">← 돌아가기</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>김성희</h1>
+                <p style="font-size: 1.3rem; margin-bottom: 0.5rem;">AI/머신러닝 전문가</p>
+                <p>카카오에서 6년간 머신러닝 엔지니어로 일한 경험과 최신 AI 기술을 여러분에게 전달합니다.</p>
+                <div style="margin-top: 2rem;">
+                    <button class="cta-button">수업 예약</button>
+                    <button class="cta-secondary">이력서 보기</button>
+                </div>
+            </div>
+            <div class="hero-image">👩‍💼</div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section>
+        <h2>강사 소개</h2>
+        <div class="about-grid">
+            <div class="about-image">🤖</div>
+            <div class="about-text">
+                <h3>AI와 머신러닝의 길을 함께합니다</h3>
+                <p>안녕하세요. 저는 카카오에서 6년간 머신러닝 엔지니어로 근무하며 추천 시스템, 자연어 처리, 컴퓨터 비전 등 다양한 프로젝트를 진행해왔습니다.</p>
+                <p>복잡한 AI 개념을 쉽고 재미있게 설명하는 것을 좋아합니다. 이론만 아니라 실무에서 바로 사용할 수 있는 기술들을 중심으로 수업을 진행합니다.</p>
+                <p>학생들이 자신감을 가지고 AI 분야로 나아갈 수 있도록 도움을 드리는 것이 제 목표입니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Timeline -->
+    <section>
+        <h2>경력 사항</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">2024 - 현재</div>
+                    <div class="timeline-title">테크 아카데미 강사</div>
+                    <p>AI/머신러닝 강의 및 학생 취업 지도</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">2018 - 2024</div>
+                    <div class="timeline-title">카카오 머신러닝 엔지니어</div>
+                    <p>추천 시스템 개발, NLP 모델 구축, 실시간 데이터 처리</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">2016 - 2018</div>
+                    <div class="timeline-title">스타트업 데이터 과학자</div>
+                    <p>초기 모델 개발 및 데이터 파이프라인 구축</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">2015</div>
+                    <div class="timeline-title">석사 학위 취득</div>
+                    <p>서울대학교 컴퓨터공학과 데이터 마이닝 전공</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section>
+        <h2>전문 분야</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🐍</div>
+                <h3>Python</h3>
+                <p>NumPy, Pandas, Scikit-learn, PyTorch 등 데이터 과학 라이브러리 전문</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🤖</div>
+                <h3>머신러닝</h3>
+                <p>분류, 회귀, 군집화, 차원축소 등 다양한 알고리즘 경험</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🧠</div>
+                <h3>딥러닝</h3>
+                <p>CNN, RNN, Transformer 등 최신 신경망 구조 이해 및 구현</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📊</div>
+                <h3>데이터 분석</h3>
+                <p>데이터 전처리, 시각화, 통계 분석 및 인사이트 도출</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">⚡</div>
+                <h3>대규모 데이터</h3>
+                <p>분산 처리, 실시간 파이프라인, 클라우드 환경 경험</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📈</div>
+                <h3>NLP</h3>
+                <p>텍스트 분류, 감정 분석, 언어 모델 구축 경험</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements -->
+    <section>
+        <h2>주요 성과</h2>
+        <div class="achievements">
+            <div class="achievement-card">
+                <h3>🏆 추천 시스템 개선</h3>
+                <p>정확도 35% 향상 알고리즘 개발으로 회사의 핵심 서비스 개선</p>
+            </div>
+            <div class="achievement-card">
+                <h3>📚 350명 이상 배출</h3>
+                <p>테크 아카데미에서 350명 이상의 학생을 교육하여 IT 업계에 진출시킴</p>
+            </div>
+            <div class="achievement-card">
+                <h3>📰 기술 컨퍼런스 발표</h3>
+                <p>PyCon Korea, Data Science Conference 등에서 발표 경험</p>
+            </div>
+            <div class="achievement-card">
+                <h3>💼 컨설팅</h3>
+                <p>10개 이상의 스타트업과 중소기업의 AI 프로젝트 컨설팅</p>
+            </div>
+            <div class="achievement-card">
+                <h3>🎓 94% 수강생 만족도</h3>
+                <p>수강생 평가에서 94% 이상의 높은 만족도 달성</p>
+            </div>
+            <div class="achievement-card">
+                <h3>🚀 취업률 96%</h3>
+                <p>강의 수료생의 96% 이상이 AI/데이터 관련 분야로 취업</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Taught -->
+    <section>
+        <h2>진행 중인 강의</h2>
+        <div class="courses-grid">
+            <div class="course-item">
+                <div class="course-header">🤖</div>
+                <div class="course-body">
+                    <h3>AI/머신러닝 기초</h3>
+                    <p>머신러닝의 기초부터 실무 적용까지 단계별로 학습합니다. 초급자도 따라할 수 있는 커리큘럼입니다.</p>
+                </div>
+            </div>
+            <div class="course-item">
+                <div class="course-header">🧠</div>
+                <div class="course-body">
+                    <h3>딥러닝 심화</h3>
+                    <p>CNN, RNN, Transformer 등 최신 신경망을 구축하고 실제 문제를 해결합니다.</p>
+                </div>
+            </div>
+            <div class="course-item">
+                <div class="course-header">📊</div>
+                <div class="course-body">
+                    <h3>데이터 분석 및 시각화</h3>
+                    <p>데이터에서 인사이트를 도출하고 효과적으로 시각화하는 방법을 배웁니다.</p>
+                </div>
+            </div>
+            <div class="course-item">
+                <div class="course-header">📈</div>
+                <div class="course-body">
+                    <h3>NLP 프로젝트</h3>
+                    <p>자연어 처리 기술을 이용한 실무 프로젝트를 진행합니다.</p>
+                </div>
+            </div>
+            <div class="course-item">
+                <div class="course-header">🔬</div>
+                <div class="course-body">
+                    <h3>포트폴리오 구축</h3>
+                    <p>AI 회사 취업을 위한 실무 중심의 포트폴리오를 함께 만듭니다.</p>
+                </div>
+            </div>
+            <div class="course-item">
+                <div class="course-header">💼</div>
+                <div class="course-body">
+                    <h3>취업 면접 준비</h3>
+                    <p>기술 면접 문제 풀이와 커리어 상담을 통해 합격을 도와드립니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics -->
+    <section>
+        <div class="stats-container">
+            <div class="stat-item">
+                <h3>6+</h3>
+                <p>년 업계 경력</p>
+            </div>
+            <div class="stat-item">
+                <h3>350+</h3>
+                <p>수강생</p>
+            </div>
+            <div class="stat-item">
+                <h3>96%</h3>
+                <p>취업률</p>
+            </div>
+            <div class="stat-item">
+                <h3>94%</h3>
+                <p>만족도</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section>
+        <div class="contact-section">
+            <h2>📞 수업 상담</h2>
+            <p style="margin-bottom: 2rem; color: #666;">지금 바로 김성희 강사와 1:1 상담을 예약하세요!</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>📧 이메일</h3>
+                    <p>sunghee.kim@techacademy.kr</p>
+                </div>
+                <div class="contact-item">
+                    <h3>📱 카톡</h3>
+                    <p>@techacademy-kim</p>
+                </div>
+                <div class="contact-item">
+                    <h3>☎️ 전화</h3>
+                    <p>02-1234-5678</p>
+                </div>
+            </div>
+            <button class="cta-button" style="margin-top: 2rem;">무료 상담 예약</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Tech Academy. All rights reserved.</p>
+        <p><a href="index.html" style="color: white; text-decoration: none;">← 학원 홈페이지로</a></p>
+    </footer>
+</body>
+</html>
