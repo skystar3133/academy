@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판 - 테크 아카데미</title>
+    <style>
+        @font-face {
+            font-family: 'Paybooc';
+            src: url('./paybooc_font/paybooc Light.ttf') format('truetype');
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: 'Paybooc';
+            src: url('./paybooc_font/paybooc Medium.ttf') format('truetype');
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: 'Paybooc';
+            src: url('./paybooc_font/paybooc Bold.ttf') format('truetype');
+            font-weight: 700;
+        }
+
+        @font-face {
+            font-family: 'Paybooc';
+            src: url('./paybooc_font/paybooc ExtraBold.ttf') format('truetype');
+            font-weight: 800;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Paybooc', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background: #f8fafc;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            font-family: 'Paybooc', sans-serif;
+            cursor: pointer;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Page Title */
+        .page-title {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .page-title h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Controls */
+        .board-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
+
+        .search-box {
+            flex: 1;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 2px solid #e0e7ff;
+            border-radius: 8px;
+            font-family: 'Paybooc', sans-serif;
+        }
+
+        .search-box button {
+            padding: 0.8rem 1.5rem;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-family: 'Paybooc', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .search-box button:hover {
+            background: #2563eb;
+        }
+
+        .write-btn {
+            padding: 0.8rem 2rem;
+            background: #10b981;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-family: 'Paybooc', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .write-btn:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+
+        /* Board Table */
+        .board-table {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 700;
+            font-family: 'Paybooc', sans-serif;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #e0e7ff;
+        }
+
+        tbody tr {
+            transition: all 0.3s;
+        }
+
+        tbody tr:hover {
+            background: #f0f9ff;
+        }
+
+        .post-title {
+            color: #1e3a8a;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .post-title:hover {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+
+        .post-category {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e3a8a;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .post-meta {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .post-views {
+            text-align: center;
+            color: #999;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .pagination a,
+        .pagination span {
+            padding: 0.5rem 0.8rem;
+            border: 1px solid #e0e7ff;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #1e3a8a;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .pagination a:hover {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .pagination .active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        /* Notice Section */
+        .notice-section {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #f59e0b;
+        }
+
+        .notice-section h3 {
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .notice-item {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e0e7ff;
+        }
+
+        .notice-item:last-child {
+            border-bottom: none;
+        }
+
+        .notice-item a {
+            color: #1e3a8a;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .notice-item a:hover {
+            color: #2563eb;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e3a8a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .board-controls {
+                flex-direction: column;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">💻 Tech Academy</a>
+            <div>
+                <a href="index.html" style="margin-right: 2rem;">← 돌아가기</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Title -->
+    <div class="page-title">
+        <h1>📢 게시판</h1>
+        <p>학원 소식과 학생들의 이야기를 나누는 공간입니다</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Notice Section -->
+        <div class="notice-section">
+            <h3>🔔 공지사항</h3>
+            <div class="notice-item">
+                <a href="#">2024년 7월 신규 강의 개강 안내</a>
+                <span class="post-meta"> - 2024.07.05</span>
+            </div>
+            <div class="notice-item">
+                <a href="#">여름 방학 특강 신청 기간 연장</a>
+                <span class="post-meta"> - 2024.07.03</span>
+            </div>
+            <div class="notice-item">
+                <a href="#">시스템 점검 안내 (7월 8일 22:00~23:00)</a>
+                <span class="post-meta"> - 2024.07.01</span>
+            </div>
+        </div>
+
+        <!-- Board Controls -->
+        <div class="board-controls">
+            <div class="search-box">
+                <input type="text" placeholder="검색어를 입력하세요...">
+                <button>검색</button>
+            </div>
+            <button class="write-btn">글쓰기</button>
+        </div>
+
+        <!-- Board Table -->
+        <div class="board-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 10%;">번호</th>
+                        <th style="width: 50%;">제목</th>
+                        <th style="width: 15%;">작성자</th>
+                        <th style="width: 15%;">작성일</th>
+                        <th style="width: 10%;">조회</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>125</td>
+                        <td>
+                            <span class="post-category">후기</span>
+                            <a href="#" class="post-title">React 강의 정말 좋아요! 취업도 성공했습니다.</a>
+                        </td>
+                        <td class="post-meta">김지은</td>
+                        <td class="post-meta">2024.07.05</td>
+                        <td class="post-views">342</td>
+                    </tr>
+                    <tr>
+                        <td>124</td>
+                        <td>
+                            <span class="post-category">질문</span>
+                            <a href="#" class="post-title">Python에서 클래스 상속이 이해가 안 갑니다</a>
+                        </td>
+                        <td class="post-meta">이민준</td>
+                        <td class="post-meta">2024.07.04</td>
+                        <td class="post-views">156</td>
+                    </tr>
+                    <tr>
+                        <td>123</td>
+                        <td>
+                            <span class="post-category">정보공유</span>
+                            <a href="#" class="post-title">머신러닝 프로젝트 포트폴리오 만드는 팁</a>
+                        </td>
+                        <td class="post-meta">박준호</td>
+                        <td class="post-meta">2024.07.03</td>
+                        <td class="post-views">521</td>
+                    </tr>
+                    <tr>
+                        <td>122</td>
+                        <td>
+                            <span class="post-category">후기</span>
+                            <a href="#" class="post-title">데이터 분석 강의를 끝내고 취업을 준비 중입니다</a>
+                        </td>
+                        <td class="post-meta">최수진</td>
+                        <td class="post-meta">2024.07.02</td>
+                        <td class="post-views">289</td>
+                    </tr>
+                    <tr>
+                        <td>121</td>
+                        <td>
+                            <span class="post-category">질문</span>
+                            <a href="#" class="post-title">웹 개발에서 데이터베이스 최적화는 어떻게 하나요?</a>
+                        </td>
+                        <td class="post-meta">이준혁</td>
+                        <td class="post-meta">2024.07.01</td>
+                        <td class="post-views">198</td>
+                    </tr>
+                    <tr>
+                        <td>120</td>
+                        <td>
+                            <span class="post-category">정보공유</span>
+                            <a href="#" class="post-title">AI 회사 취업 면접 질문 정리</a>
+                        </td>
+                        <td class="post-meta">김현지</td>
+                        <td class="post-meta">2024.06.30</td>
+                        <td class="post-views">845</td>
+                    </tr>
+                    <tr>
+                        <td>119</td>
+                        <td>
+                            <span class="post-category">후기</span>
+                            <a href="#" class="post-title">인생이 바뀌었어요. 감사합니다!</a>
+                        </td>
+                        <td class="post-meta">박성훈</td>
+                        <td class="post-meta">2024.06.28</td>
+                        <td class="post-views">1,203</td>
+                    </tr>
+                    <tr>
+                        <td>118</td>
+                        <td>
+                            <span class="post-category">질문</span>
+                            <a href="#" class="post-title">딥러닝 모델의 오버피팅을 방지하는 방법</a>
+                        </td>
+                        <td class="post-meta">최은희</td>
+                        <td class="post-meta">2024.06.25</td>
+                        <td class="post-views">267</td>
+                    </tr>
+                    <tr>
+                        <td>117</td>
+                        <td>
+                            <span class="post-category">정보공유</span>
+                            <a href="#" class="post-title">2024년 개발자 트렌드와 배워야 할 기술들</a>
+                        </td>
+                        <td class="post-meta">이미영</td>
+                        <td class="post-meta">2024.06.20</td>
+                        <td class="post-views">634</td>
+                    </tr>
+                    <tr>
+                        <td>116</td>
+                        <td>
+                            <span class="post-category">후기</span>
+                            <a href="#" class="post-title">Python 기초부터 Django까지 완벽하게 배웠습니다</a>
+                        </td>
+                        <td class="post-meta">김동욱</td>
+                        <td class="post-meta">2024.06.18</td>
+                        <td class="post-views">456</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <a href="#">◀ 이전</a>
+            <span class="active">1</span>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">다음 ▶</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Tech Academy. All rights reserved.</p>
+        <p><a href="index.html" style="color: white; text-decoration: none;">← 학원 홈페이지로</a></p>
+    </footer>
+</body>
+</html>
