@@ -282,6 +282,66 @@
             color: var(--gray);
             font-weight: 500;
             transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        /* E-Commerce Project */
+        .work-item:nth-child(1) .work-item-image {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .work-item:nth-child(1) .work-item-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.1) 75%),
+                linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.1) 75%);
+            background-size: 30px 30px;
+            background-position: 0 0, 0 15px, 15px -15px, -15px 0px;
+            z-index: -1;
+        }
+
+        /* SaaS Dashboard */
+        .work-item:nth-child(2) .work-item-image {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .work-item:nth-child(2) .work-item-image::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background:
+                linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            z-index: -1;
+        }
+
+        /* Brand Identity */
+        .work-item:nth-child(3) .work-item-image {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+
+        .work-item:nth-child(3) .work-item-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: 0.3;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.8), transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.8), transparent 50%);
+            z-index: -1;
         }
 
         .work-item:hover .work-item-image {
@@ -406,6 +466,35 @@
             font-size: 14px;
             color: rgba(255, 255, 255, 0.8);
             font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%),
+                linear-gradient(-45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+
+        .about-image::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.2), transparent);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
 
         /* Stats */
