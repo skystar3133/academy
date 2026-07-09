@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문의하기 - 옥수수앱</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FFD700;
+            --dark: #0a0a0a;
+            --light: #f5f5f5;
+            --accent: #ff9500;
+            --gray: #666;
+            --input-bg: #f9f9f9;
+            --border-color: #e5e5e5;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: white;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 60px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .contact-hero {
+            padding-top: 160px;
+            padding-bottom: 100px;
+            padding-left: 60px;
+            padding-right: 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 30%, rgba(255, 149, 0, 0.08) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .contact-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-label {
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 24px;
+            font-weight: 600;
+        }
+
+        .contact-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .contact-hero p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--gray);
+            margin-bottom: 40px;
+        }
+
+        .response-time {
+            display: inline-block;
+            background: var(--light);
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--dark);
+            margin-bottom: 60px;
+        }
+
+        .response-time::before {
+            content: '⚡';
+            margin-right: 8px;
+        }
+
+        /* Main Content */
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+            padding-bottom: 100px;
+        }
+
+        /* Form Section */
+        .contact-form-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 400;
+            margin-bottom: 40px;
+            line-height: 1.2;
+        }
+
+        .form-group {
+            margin-bottom: 28px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--dark);
+            margin-bottom: 12px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid var(--border-color);
+            background: var(--input-bg);
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: var(--dark);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-row .form-group {
+            margin-bottom: 0;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px 24px;
+            background: var(--dark);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 16px;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        /* Info Section */
+        .contact-info-section {
+            padding: 60px;
+            background: var(--light);
+            border-radius: 12px;
+            position: sticky;
+            top: 120px;
+        }
+
+        .contact-info-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 40px;
+            line-height: 1.2;
+        }
+
+        .info-item {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .info-value {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+
+        .info-value a {
+            color: var(--dark);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .info-value a:hover {
+            color: var(--primary);
+        }
+
+        .info-description {
+            font-size: 13px;
+            color: var(--gray);
+            margin-top: 4px;
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .social-btn {
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--border-color);
+            background: white;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 18px;
+        }
+
+        .social-btn:hover {
+            background: var(--dark);
+            color: white;
+            border-color: var(--dark);
+        }
+
+        /* Visual Section */
+        .visual-section {
+            padding: 120px 60px;
+            background: linear-gradient(135deg, var(--dark) 0%, #1a1a1a 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .visual-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .visual-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 149, 0, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        .visual-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .visual-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 56px;
+            font-weight: 400;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .visual-section p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 32px;
+            line-height: 1.8;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 16px 40px;
+            background: var(--primary);
+            color: var(--dark);
+            border: none;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .cta-btn:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-40px); }
+        }
+
+        /* Process Section */
+        .process-section {
+            padding: 120px 60px;
+            background: white;
+        }
+
+        .process-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 16px;
+            line-height: 1;
+        }
+
+        .step-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        .step-description {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .process-step::after {
+            content: '→';
+            position: absolute;
+            right: -25px;
+            top: 30px;
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        .process-step:last-child::after {
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 60px;
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            font-size: 13px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .contact-info-section {
+                position: static;
+            }
+
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-step::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 16px 24px;
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+
+            .contact-hero,
+            .contact-container,
+            .visual-section,
+            .process-section {
+                padding: 40px 24px;
+            }
+
+            .contact-hero h1 {
+                font-size: 48px;
+            }
+
+            .contact-hero p {
+                font-size: 16px;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info-section {
+                padding: 40px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .visual-section h2 {
+                font-size: 42px;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            footer {
+                padding: 30px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">옥<span>수</span>수앱</a>
+        <a href="index.html">← 메인으로</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+        <div class="contact-hero-content">
+            <div class="hero-label">Let's work together</div>
+            <h1>당신의 프로젝트를 시작해보세요</h1>
+            <p>새로운 프로젝트나 협력 기회에 대해 이야기하고 싶으신가요? 저희팀에 연락하세요.</p>
+            <div class="response-time">평균 응답 시간: 24시간</div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-container">
+        <div class="contact-form-section">
+            <h2>프로젝트 정보</h2>
+            <form id="contactForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">이름 *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">이메일 *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="company">회사명</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">전화번호</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="projectType">프로젝트 유형 *</label>
+                    <select id="projectType" name="projectType" required>
+                        <option value="">선택해주세요</option>
+                        <option value="web">웹사이트</option>
+                        <option value="app">모바일 앱</option>
+                        <option value="design">UI/UX 디자인</option>
+                        <option value="branding">브랜드 전략</option>
+                        <option value="other">기타</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="budget">예상 예산</label>
+                    <select id="budget" name="budget">
+                        <option value="">선택해주세요</option>
+                        <option value="under-10m">1,000만원 이하</option>
+                        <option value="10-30m">1,000만원 ~ 3,000만원</option>
+                        <option value="30-50m">3,000만원 ~ 5,000만원</option>
+                        <option value="over-50m">5,000만원 이상</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">프로젝트 설명 *</label>
+                    <textarea id="message" name="message" required placeholder="당신의 프로젝트에 대해 알려주세요"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">메시지 보내기</button>
+                <p style="font-size: 12px; color: var(--gray); margin-top: 12px;">* 표시된 항목은 필수입니다</p>
+            </form>
+        </div>
+
+        <div class="contact-info-section">
+            <h3>연락처</h3>
+
+            <div class="info-item">
+                <div class="info-label">메일</div>
+                <div class="info-value">
+                    <a href="mailto:hello@oksusuapp.com">hello@oksusuapp.com</a>
+                </div>
+                <div class="info-description">가장 빠른 연락 방법입니다</div>
+            </div>
+
+            <div class="info-item">
+                <div class="info-label">전화</div>
+                <div class="info-value">
+                    <a href="tel:010-1234-5678">010-1234-5678</a>
+                </div>
+                <div class="info-description">평일 09:00 ~ 18:00</div>
+            </div>
+
+            <div class="info-item">
+                <div class="info-label">주소</div>
+                <div class="info-value">
+                    서울시 강남구 테헤란로 123<br>
+                    옥수수앱 스튜디오
+                </div>
+                <div class="info-description">방문 상담은 사전 예약 필수</div>
+            </div>
+
+            <div class="info-item">
+                <div class="info-label">운영시간</div>
+                <div class="info-value">
+                    월-금: 09:00 - 18:00<br>
+                    토-일: 휴무
+                </div>
+                <div class="info-description">공휴일은 휴무입니다</div>
+            </div>
+
+            <div class="social-links">
+                <button class="social-btn" title="Instagram">📷</button>
+                <button class="social-btn" title="LinkedIn">💼</button>
+                <button class="social-btn" title="Twitter">🐦</button>
+                <button class="social-btn" title="GitHub">🐙</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <h2>우리의 협업 프로세스</h2>
+        <div class="process-grid">
+            <div class="process-step">
+                <div class="step-number">01</div>
+                <div class="step-title">상담</div>
+                <div class="step-description">당신의 프로젝트 목표와 요구사항을 깊이 있게 이해합니다</div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">02</div>
+                <div class="step-title">제안</div>
+                <div class="step-description">맞춤형 전략과 기술 솔루션을 제안합니다</div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">03</div>
+                <div class="step-title">개발</div>
+                <div class="step-description">최신 기술과 디자인 원칙으로 구현합니다</div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">04</div>
+                <div class="step-title">배포</div>
+                <div class="step-description">완벽한 완성과 지속적인 지원을 제공합니다</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="visual-section">
+        <div class="visual-content">
+            <h2>지금 시작하세요</h2>
+            <p>당신의 디지털 미래를 함께 만들어보세요. 상담은 완전히 무료입니다.</p>
+            <a href="#contactForm" class="cta-btn">문의 폼으로 이동</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 OKSUSUAPP. All rights reserved. | <a href="index.html">홈</a> | <a href="index.html#work">포트폴리오</a> | <a href="게시판.html">블로그</a></p>
+    </footer>
+
+    <script>
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('감사합니다! 곧 연락드리겠습니다.\n\n실제 환경에서는 서버로 데이터가 전송됩니다.');
+            this.reset();
+        });
+
+        // Smooth scroll to form
+        document.querySelectorAll('a[href="#contactForm"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('contactForm').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
