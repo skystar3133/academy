@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>김성희 강사 - Tech Academy</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>포트폴리오 - 옥수수앱 프로젝트</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,394 +13,432 @@
         }
 
         :root {
-            --color-primary: #cc785c;
-            --color-primary-active: #a9583e;
-            --color-ink: #141413;
-            --color-body: #3d3d3a;
-            --color-muted: #6c6a64;
-            --color-hairline: #e6dfd8;
-            --color-canvas: #faf9f5;
-            --color-surface-card: #efe9de;
-            --color-surface-dark: #181715;
-            --color-on-dark: #faf9f5;
-            --color-on-dark-soft: #a09d96;
-            --spacing-lg: 24px;
-            --spacing-xl: 32px;
-            --spacing-xxl: 48px;
-            --spacing-section: 96px;
-            --radius-lg: 12px;
-            --radius-xl: 16px;
-            --radius-md: 8px;
+            --primary: #FFD700;
+            --dark: #0a0a0a;
+            --light: #f5f5f5;
+            --accent: #ff9500;
+            --gray: #666;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            color: var(--color-body);
-            background: var(--color-canvas);
-            line-height: 1.55;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Cormorant Garamond', serif;
-            color: var(--color-ink);
-            font-weight: 400;
-        }
-
-        h1 { font-size: 64px; letter-spacing: -1.5px; line-height: 1.05; }
-        h2 { font-size: 48px; letter-spacing: -1px; line-height: 1.1; margin-bottom: var(--spacing-lg); }
-        h3 { font-size: 28px; letter-spacing: -0.3px; }
-
-        /* Header */
-        header {
-            background: var(--color-canvas);
-            border-bottom: 1px solid var(--color-hairline);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            height: 64px;
-            display: flex;
-            align-items: center;
+            font-family: 'Inter', sans-serif;
+            background: #fff;
+            color: var(--dark);
         }
 
         nav {
-            max-width: 1200px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 0 var(--spacing-lg);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 24px 60px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
         .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            margin-bottom: 60px;
+        }
+
+        .back-link:hover {
+            color: var(--primary);
+        }
+
+        .portfolio-header {
+            padding-top: 160px;
+            padding-bottom: 60px;
+            padding-left: 60px;
+            padding-right: 60px;
+        }
+
+        .portfolio-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 100px;
+        }
+
+        .portfolio-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 32px;
+        }
+
+        .portfolio-hero p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--gray);
+            margin-bottom: 32px;
+        }
+
+        .portfolio-meta {
+            display: flex;
+            gap: 60px;
+            padding-top: 32px;
+            border-top: 1px solid #eee;
+        }
+
+        .meta-item {
+            flex: 1;
+        }
+
+        .meta-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .meta-value {
             font-size: 16px;
-            font-weight: 600;
-            color: var(--color-ink);
-            text-decoration: none;
+            font-weight: 500;
+            color: var(--dark);
         }
 
-        /* Hero Band */
-        .hero-band {
-            background: var(--color-canvas);
-            padding: var(--spacing-section) var(--spacing-lg);
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--spacing-xxl);
-            align-items: center;
-        }
-
-        .hero-text h1 { margin-bottom: var(--spacing-lg); }
-        .hero-text p { font-size: 16px; margin-bottom: var(--spacing-md); color: var(--color-body); }
-        .hero-text p:first-of-type { font-size: 18px; font-weight: 500; }
-
-        .hero-illustration {
-            background: var(--color-surface-dark);
-            border-radius: var(--radius-xl);
-            height: 400px;
+        .portfolio-image {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            border-radius: 8px;
+            aspect-ratio: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 100px;
         }
 
-        .btn {
-            background: var(--color-primary);
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: var(--radius-md);
-            font-weight: 500;
-            cursor: pointer;
-            display: inline-block;
-            text-decoration: none;
-            margin-right: var(--spacing-md);
-            transition: all 0.2s;
+        .portfolio-content {
+            padding: 0 60px;
         }
 
-        .btn:hover { background: var(--color-primary-active); }
-        .btn-secondary { background: transparent; border: 1px solid var(--color-hairline); color: var(--color-ink); }
-        .btn-secondary:hover { background: var(--color-surface-card); }
-
-        /* Section */
-        section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: var(--spacing-section) var(--spacing-lg);
+        .content-section {
+            margin-bottom: 100px;
         }
 
-        section h2 { text-align: center; margin-bottom: var(--spacing-xxl); }
-
-        /* Feature Grid */
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--spacing-xxl);
-        }
-
-        .feature-card {
-            background: var(--color-surface-card);
-            border-radius: var(--radius-lg);
-            padding: var(--spacing-xl);
-        }
-
-        .feature-card-icon { font-size: 48px; margin-bottom: var(--spacing-lg); }
-        .feature-card h3 { font-size: 22px; margin-bottom: var(--spacing-md); }
-        .feature-card p { font-size: 14px; color: var(--color-body); line-height: 1.6; }
-
-        /* About Grid */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--spacing-xxl);
-            align-items: start;
-        }
-
-        .about-image {
-            background: var(--color-surface-dark);
-            border-radius: var(--radius-xl);
-            height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 80px;
-        }
-
-        .about-text h3 { margin-bottom: var(--spacing-md); font-size: 22px; }
-        .about-text p { margin-bottom: var(--spacing-md); line-height: 1.8; font-size: 15px; }
-
-        /* Timeline */
-        .timeline {
-            position: relative;
-        }
-
-        .timeline-item {
-            margin-bottom: var(--spacing-lg);
-            background: var(--color-surface-card);
-            border-radius: var(--radius-lg);
-            padding: var(--spacing-xl);
-            border-left: 4px solid var(--color-primary);
-        }
-
-        .timeline-year {
-            color: var(--color-primary);
-            font-weight: 600;
-            font-size: 13px;
-        }
-
-        .timeline-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 20px;
-            color: var(--color-ink);
-            margin: var(--spacing-md) 0;
-            font-weight: 500;
-        }
-
-        .timeline-item p { font-size: 14px; color: var(--color-body); }
-
-        /* Stats */
-        .stats-container {
-            background: var(--color-surface-dark);
-            color: var(--color-on-dark);
-            border-radius: var(--radius-lg);
-            padding: var(--spacing-xxl);
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: var(--spacing-xxl);
-            text-align: center;
-        }
-
-        .stat-item h3 {
-            color: var(--color-on-dark);
+        .content-section h2 {
+            font-family: 'Playfair Display', serif;
             font-size: 42px;
-            margin-bottom: var(--spacing-sm);
+            font-weight: 400;
+            margin-bottom: 32px;
+            line-height: 1.2;
         }
 
-        .stat-item p {
-            color: var(--color-on-dark-soft);
+        .content-section p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--gray);
+            margin-bottom: 20px;
+            max-width: 700px;
+        }
+
+        .content-section ul {
+            list-style: none;
+            margin: 32px 0;
+        }
+
+        .content-section li {
+            padding: 12px 0;
+            padding-left: 24px;
+            position: relative;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .content-section li:before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .gallery-item {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            border-radius: 8px;
+            aspect-ratio: 1;
+            overflow: hidden;
+        }
+
+        .gallery-item:nth-child(3) {
+            grid-column: 1 / -1;
+            aspect-ratio: 2;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 32px 0;
+        }
+
+        .tech-tag {
+            background: var(--light);
+            padding: 8px 16px;
+            border-radius: 4px;
             font-size: 13px;
+            font-weight: 500;
+            color: var(--dark);
         }
 
-        /* CTA Band */
-        .cta-band-dark {
-            background: var(--color-surface-dark);
-            color: var(--color-on-dark);
-            border-radius: var(--radius-lg);
-            padding: 64px var(--spacing-xxl);
-            text-align: center;
+        .related-projects {
+            padding: 100px 60px;
+            background: var(--light);
         }
 
-        .cta-band-dark h2 { color: var(--color-on-dark); }
-        .cta-band-dark p { color: var(--color-on-dark-soft); margin-bottom: var(--spacing-lg); font-size: 16px; }
+        .related-projects h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 400;
+            margin-bottom: 60px;
+        }
 
-        /* Footer */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .project-card-image {
+            background: linear-gradient(135deg, #ddd 0%, #ccc 100%);
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-card-content {
+            padding: 24px;
+        }
+
+        .project-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+
+        .project-card p {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
         footer {
-            background: var(--color-surface-dark);
-            color: var(--color-on-dark-soft);
-            padding: 64px var(--spacing-lg);
+            padding: 60px;
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.6);
             text-align: center;
-            font-size: 13px;
-            margin-top: var(--spacing-section);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        footer a {
-            color: var(--color-on-dark-soft);
-            text-decoration: none;
-        }
-
-        footer a:hover { color: var(--color-on-dark); }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            h1 { font-size: 32px; }
-            h2 { font-size: 28px; }
-            .hero-content, .about-grid { grid-template-columns: 1fr; }
-            .feature-grid { grid-template-columns: 1fr; }
-            .stats-container { grid-template-columns: repeat(2, 1fr); }
+            nav {
+                padding: 16px 24px;
+            }
+
+            .portfolio-header,
+            .portfolio-content,
+            .related-projects {
+                padding: 40px 24px;
+            }
+
+            .portfolio-hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .portfolio-hero h1 {
+                font-size: 42px;
+            }
+
+            .image-gallery,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-meta {
+                flex-direction: column;
+                gap: 30px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <a href="index.html" class="logo">← Tech Academy</a>
-        </nav>
-    </header>
+    <nav>
+        <div class="logo">옥<span>수</span>수앱</div>
+        <a href="index.html" class="back-link">← 메인으로 돌아가기</a>
+    </nav>
 
-    <!-- Hero -->
-    <div class="hero-band">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>김성희</h1>
-                <p>AI/머신러닝 전문가</p>
-                <p>카카오에서 6년간 머신러닝 엔지니어로 일한 경험과 최신 AI 기술을 여러분에게 전달합니다.</p>
-                <div style="margin-top: var(--spacing-lg);">
-                    <button class="btn">수업 예약</button>
-                    <button class="btn btn-secondary">이력서 보기</button>
+    <div class="portfolio-header">
+        <a href="index.html#work" class="back-link">← 모든 작업</a>
+
+        <div class="portfolio-hero">
+            <div>
+                <h1>E-Commerce Platform</h1>
+                <p>온라인 쇼핑 경험의 완전한 재정의. 사용자 중심의 인터페이스와 강력한 기술력으로 매출 증대를 구현했습니다.</p>
+
+                <div class="portfolio-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">클라이언트</div>
+                        <div class="meta-value">GlobalStore Inc.</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">작업 기간</div>
+                        <div class="meta-value">6개월</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">역할</div>
+                        <div class="meta-value">Full Stack Dev</div>
+                    </div>
                 </div>
             </div>
-            <div class="hero-illustration">👩‍💼</div>
+            <div class="portfolio-image">프로젝트 메인 이미지</div>
         </div>
     </div>
 
-    <!-- About -->
-    <section>
-        <h2>강사 소개</h2>
-        <div class="about-grid">
-            <div class="about-image">🤖</div>
-            <div class="about-text">
-                <h3>복잡한 AI를 쉽게 설명합니다</h3>
-                <p>안녕하세요. 저는 카카오에서 6년간 머신러닝 엔지니어로 근무하며 추천 시스템, 자연어 처리, 컴퓨터 비전 등 다양한 프로젝트를 진행해왔습니다.</p>
-                <p>복잡한 AI 개념을 쉽고 재미있게 설명하는 것을 좋아합니다. 이론만 아니라 실무에서 바로 사용할 수 있는 기술들을 중심으로 수업을 진행합니다.</p>
-                <p>학생들이 자신감을 가지고 AI 분야로 나아갈 수 있도록 도움을 드리는 것이 제 목표입니다.</p>
+    <div class="portfolio-content">
+        <div class="content-section">
+            <h2>프로젝트 개요</h2>
+            <p>GlobalStore는 성장하는 전자상거래 브랜드로, 기존의 낡은 플랫폼을 현대적이고 확장 가능한 솔루션으로 변환해야 했습니다.</p>
+            <p>우리 팀은 시장 분석, 경쟁사 벤치마킹, 사용자 인터뷰를 통해 핵심 니즈를 파악했고, 이를 바탕으로 완전한 새로운 플랫폼을 설계하고 개발했습니다.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>핵심 기능</h2>
+            <ul>
+                <li>고급 상품 필터링 & 검색 시스템</li>
+                <li>개인화된 추천 알고리즘</li>
+                <li>원활한 체크아웃 경험</li>
+                <li>실시간 재고 관리</li>
+                <li>다국어 & 멀티 통화 지원</li>
+                <li>모바일 최적화</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>설계 과정</h2>
+            <p>사용자 조사를 통해 발견한 가장 큰 문제점은 '구매 결정 시간이 너무 오래 걸린다'는 것이었습니다.</p>
+            <p>이를 해결하기 위해:</p>
+            <ul>
+                <li>직관적인 네비게이션 구조 재설계</li>
+                <li>비주얼 검색 기능 추가</li>
+                <li>원클릭 체크아웃 시스템 구현</li>
+                <li>고객 리뷰 & 평점 시스템 강화</li>
+            </ul>
+        </div>
+
+        <div class="image-gallery">
+            <div class="gallery-item"></div>
+            <div class="gallery-item"></div>
+            <div class="gallery-item"></div>
+        </div>
+
+        <div class="content-section">
+            <h2>기술 스택</h2>
+            <div class="tech-stack">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">PostgreSQL</span>
+                <span class="tech-tag">Stripe</span>
+                <span class="tech-tag">AWS</span>
+                <span class="tech-tag">Docker</span>
+                <span class="tech-tag">GraphQL</span>
+                <span class="tech-tag">Figma</span>
             </div>
         </div>
-    </section>
 
-    <!-- Career -->
-    <section>
-        <h2>경력 사항</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-year">2024 - 현재</div>
-                <div class="timeline-title">Tech Academy 강사</div>
-                <p>AI/머신러닝 강의 및 학생 취업 지도</p>
+        <div class="content-section">
+            <h2>결과</h2>
+            <ul>
+                <li>평균 페이지 로딩 시간 40% 감소</li>
+                <li>장바구니 포기율 25% 감소</li>
+                <li>전환율 35% 증가</li>
+                <li>사용자 만족도 4.8/5.0</li>
+                <li>월 순 수익 220% 증가</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="related-projects">
+        <h2>다른 프로젝트</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-card-image">프로젝트 2</div>
+                <div class="project-card-content">
+                    <h3>SaaS Dashboard</h3>
+                    <p>데이터 중심의 관리 인터페이스</p>
+                </div>
             </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2018 - 2024</div>
-                <div class="timeline-title">카카오 머신러닝 엔지니어</div>
-                <p>추천 시스템 개발, NLP 모델 구축, 실시간 데이터 처리</p>
+            <div class="project-card">
+                <div class="project-card-image">프로젝트 3</div>
+                <div class="project-card-content">
+                    <h3>Brand Identity</h3>
+                    <p>라이프스타일 브랜드의 디지털 변신</p>
+                </div>
             </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2016 - 2018</div>
-                <div class="timeline-title">스타트업 데이터 과학자</div>
-                <p>초기 모델 개발 및 데이터 파이프라인 구축</p>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2015</div>
-                <div class="timeline-title">석사 학위 취득</div>
-                <p>서울대학교 컴퓨터공학과 데이터 마이닝 전공</p>
+            <div class="project-card">
+                <div class="project-card-image">프로젝트 4</div>
+                <div class="project-card-content">
+                    <h3>Mobile App</h3>
+                    <p>핀테크 솔루션</p>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Skills -->
-    <section>
-        <h2>전문 분야</h2>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <div class="feature-card-icon">🐍</div>
-                <h3>Python</h3>
-                <p>NumPy, Pandas, Scikit-learn, PyTorch 등 데이터 과학 라이브러리 전문</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-card-icon">🤖</div>
-                <h3>머신러닝</h3>
-                <p>분류, 회귀, 군집화, 차원축소 등 다양한 알고리즘 경험</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-card-icon">🧠</div>
-                <h3>딥러닝</h3>
-                <p>CNN, RNN, Transformer 등 최신 신경망 구조 이해 및 구현</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-card-icon">📊</div>
-                <h3>데이터 분석</h3>
-                <p>데이터 전처리, 시각화, 통계 분석 및 인사이트 도출</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-card-icon">⚡</div>
-                <h3>대규모 데이터</h3>
-                <p>분산 처리, 실시간 파이프라인, 클라우드 환경 경험</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-card-icon">📈</div>
-                <h3>NLP</h3>
-                <p>텍스트 분류, 감정 분석, 언어 모델 구축 경험</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats -->
-    <section>
-        <div class="stats-container">
-            <div class="stat-item">
-                <h3>6+</h3>
-                <p>년 업계 경력</p>
-            </div>
-            <div class="stat-item">
-                <h3>350+</h3>
-                <p>수강생</p>
-            </div>
-            <div class="stat-item">
-                <h3>96%</h3>
-                <p>취업률</p>
-            </div>
-            <div class="stat-item">
-                <h3>94%</h3>
-                <p>만족도</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section>
-        <div class="cta-band-dark">
-            <h2>김성희 강사와 함께 시작하세요</h2>
-            <p>지금 바로 1:1 상담을 예약하고 AI의 세계로 나아가세요!</p>
-            <button class="btn">무료 상담 예약</button>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Tech Academy. All rights reserved.</p>
-        <p><a href="index.html">← 홈페이지로 돌아가기</a></p>
+        <p>&copy; 2024 OKSUSUAPP. All rights reserved.</p>
     </footer>
 </body>
 </html>

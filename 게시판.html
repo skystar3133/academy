@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게시판 - Tech Academy</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>블로그 - 옥수수앱 디자인 & 개발 인사이트</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,445 +13,528 @@
         }
 
         :root {
-            --color-primary: #cc785c;
-            --color-ink: #141413;
-            --color-body: #3d3d3a;
-            --color-muted: #6c6a64;
-            --color-hairline: #e6dfd8;
-            --color-canvas: #faf9f5;
-            --color-surface-card: #efe9de;
-            --color-surface-dark: #181715;
-            --color-on-dark: #faf9f5;
-            --color-on-dark-soft: #a09d96;
-            --spacing-lg: 24px;
-            --spacing-xl: 32px;
-            --radius-lg: 12px;
-            --radius-md: 8px;
+            --primary: #FFD700;
+            --dark: #0a0a0a;
+            --light: #f5f5f5;
+            --accent: #ff9500;
+            --gray: #666;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            color: var(--color-body);
-            background: var(--color-canvas);
-            line-height: 1.55;
-        }
-
-        h1, h2 {
-            font-family: 'Cormorant Garamond', serif;
-            color: var(--color-ink);
-            font-weight: 400;
-        }
-
-        h1 { font-size: 48px; letter-spacing: -1px; }
-        h2 { font-size: 36px; letter-spacing: -0.5px; margin-bottom: var(--spacing-lg); }
-
-        /* Header */
-        header {
-            background: var(--color-canvas);
-            border-bottom: 1px solid var(--color-hairline);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            height: 64px;
-            display: flex;
-            align-items: center;
+            font-family: 'Inter', sans-serif;
+            background: #fff;
+            color: var(--dark);
         }
 
         nav {
-            max-width: 1200px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 0 var(--spacing-lg);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 24px 60px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
         .logo {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--color-ink);
-            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .logo span {
+            color: var(--primary);
         }
 
         nav a {
-            color: var(--color-body);
-            font-size: 14px;
             text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
         }
 
-        /* Page Title */
-        .page-title {
-            background: var(--color-canvas);
-            padding: var(--spacing-lg) 0;
-            border-bottom: 1px solid var(--color-hairline);
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .blog-hero {
+            padding-top: 160px;
+            padding-bottom: 100px;
+            padding-left: 60px;
+            padding-right: 60px;
             text-align: center;
         }
 
-        .page-title h1 { margin-bottom: 8px; }
-        .page-title p { color: var(--color-muted); font-size: 15px; }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: var(--spacing-xl) var(--spacing-lg);
+        .blog-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 24px;
         }
 
-        /* Board Controls */
-        .board-controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: var(--spacing-lg);
-            gap: var(--spacing-lg);
+        .blog-hero p {
+            font-size: 20px;
+            line-height: 1.6;
+            color: var(--gray);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .search-box {
-            flex: 1;
-            display: flex;
-            gap: 8px;
-        }
-
-        .search-box input {
-            flex: 1;
-            padding: 10px 14px;
-            border: 1px solid var(--color-hairline);
-            border-radius: var(--radius-md);
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            background: var(--color-primary);
-            color: white;
-            border: none;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            font-weight: 500;
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-        }
-
-        .btn:hover { opacity: 0.9; }
-        .btn-secondary { background: transparent; border: 1px solid var(--color-hairline); color: var(--color-ink); }
-
-        /* Notice */
-        .notice-section {
-            background: var(--color-surface-card);
-            border-radius: var(--radius-lg);
-            padding: var(--spacing-xl);
-            margin-bottom: var(--spacing-xl);
-            border-left: 4px solid var(--color-primary);
-        }
-
-        .notice-section h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 22px;
-            color: var(--color-ink);
-            margin-bottom: var(--spacing-lg);
-        }
-
-        .notice-item {
-            padding: 12px 0;
-            border-bottom: 1px solid var(--color-hairline);
-        }
-
-        .notice-item:last-child { border-bottom: none; }
-
-        .notice-item a {
-            color: var(--color-ink);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 14px;
-        }
-
-        .notice-item a:hover { color: var(--color-primary); }
-        .notice-item .meta { font-size: 13px; color: var(--color-muted); }
-
-        /* Board Table */
-        .board-table {
-            background: white;
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            border: 1px solid var(--color-hairline);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        thead {
-            background: var(--color-surface-card);
-            border-bottom: 1px solid var(--color-hairline);
-        }
-
-        th {
-            padding: var(--spacing-lg);
-            text-align: left;
-            font-weight: 600;
-            font-size: 13px;
-            color: var(--color-ink);
-        }
-
-        td {
-            padding: var(--spacing-lg);
-            border-bottom: 1px solid var(--color-hairline);
-            font-size: 14px;
-        }
-
-        tbody tr:hover { background: var(--color-canvas); }
-
-        .post-title {
-            color: var(--color-ink);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .post-title:hover { color: var(--color-primary); }
-
-        .post-category {
-            display: inline-block;
-            background: var(--color-primary);
-            color: white;
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: 600;
-            margin-right: 8px;
-        }
-
-        .post-meta { color: var(--color-muted); font-size: 13px; }
-        .post-views { text-align: center; color: var(--color-muted); }
-
-        /* Pagination */
-        .pagination {
+        .blog-filter {
             display: flex;
             justify-content: center;
-            gap: 4px;
-            margin-top: var(--spacing-xl);
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
         }
 
-        .pagination a,
-        .pagination span {
-            padding: 8px 12px;
-            border: 1px solid var(--color-hairline);
-            border-radius: var(--radius-md);
-            text-decoration: none;
-            color: var(--color-ink);
+        .filter-tag {
+            padding: 8px 20px;
+            background: var(--light);
+            border: 1px solid transparent;
+            border-radius: 4px;
             cursor: pointer;
             font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .pagination a:hover { background: var(--color-surface-card); }
-        .pagination .active {
-            background: var(--color-primary);
+        .filter-tag:hover,
+        .filter-tag.active {
+            background: var(--dark);
             color: white;
-            border-color: var(--color-primary);
+            border-color: var(--dark);
         }
 
-        /* Footer */
-        footer {
-            background: var(--color-surface-dark);
-            color: var(--color-on-dark-soft);
-            padding: 64px var(--spacing-lg);
-            text-align: center;
-            margin-top: var(--spacing-xl);
+        .blog-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 60px;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 100px;
+        }
+
+        .blog-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            group: 'blog';
+        }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .blog-card-image {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            border-radius: 8px;
+            aspect-ratio: 1.5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .blog-card:hover .blog-card-image {
+            transform: scale(1.05);
+        }
+
+        .blog-card-meta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            font-size: 12px;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .blog-card-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .blog-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .blog-card p {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             font-size: 13px;
+            font-weight: 600;
+            color: var(--dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
 
-        footer a {
-            color: var(--color-on-dark-soft);
-            text-decoration: none;
+        .read-more:hover {
+            color: var(--primary);
+            gap: 12px;
+        }
+
+        .blog-featured {
+            background: var(--light);
+            padding: 60px;
+            border-radius: 8px;
+            margin-bottom: 100px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .featured-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 400;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .featured-content p {
+            font-size: 16px;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .featured-image {
+            background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 100%);
+            border-radius: 8px;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .categories {
+            padding: 60px;
+            background: white;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+
+        .categories h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 400;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .category-item {
+            text-align: center;
+            padding: 30px;
+            border-radius: 8px;
+            background: var(--light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-item:hover {
+            background: var(--dark);
+            color: white;
+        }
+
+        .category-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .category-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+
+        .category-item p {
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+        .category-item:hover p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .newsletter {
+            padding: 100px 60px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--dark) 0%, #1a1a1a 100%);
+            color: white;
+        }
+
+        .newsletter h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 400;
+            margin-bottom: 24px;
+            color: white;
+        }
+
+        .newsletter p {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 32px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 12px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 14px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            color: white;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .newsletter-form button {
+            padding: 14px 32px;
+            background: var(--primary);
+            color: var(--dark);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            padding: 60px;
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.6);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 13px;
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 28px; }
-            h2 { font-size: 24px; }
-            .board-controls { flex-direction: column; }
-            .search-box { width: 100%; }
-            table { font-size: 12px; }
-            th, td { padding: var(--spacing-lg) 8px; }
+            nav {
+                padding: 16px 24px;
+            }
+
+            .blog-hero,
+            .blog-content,
+            .blog-featured,
+            .categories,
+            .newsletter {
+                padding: 40px 24px;
+            }
+
+            .blog-hero h1 {
+                font-size: 48px;
+            }
+
+            .blog-grid,
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-featured {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <a href="index.html" class="logo">← Tech Academy</a>
-        </nav>
-    </header>
+    <nav>
+        <div class="logo">옥<span>수</span>수앱</div>
+        <a href="index.html">← 메인으로</a>
+    </nav>
 
-    <!-- Page Title -->
-    <div class="page-title">
-        <h1>학원 게시판</h1>
-        <p>학원 소식과 학생들의 이야기를 나누는 공간입니다</p>
-    </div>
+    <div class="blog-hero">
+        <h1>디자인 & 개발 인사이트</h1>
+        <p>웹 트렌드, 디자인 철학, 개발 팁까지. 우리의 경험을 나눕니다.</p>
 
-    <!-- Main Content -->
-    <div class="container">
-        <!-- Notice Section -->
-        <div class="notice-section">
-            <h3>🔔 공지사항</h3>
-            <div class="notice-item">
-                <a href="#">2024년 7월 신규 강의 개강 안내</a>
-                <div class="meta">2024.07.05</div>
-            </div>
-            <div class="notice-item">
-                <a href="#">여름 방학 특강 신청 기간 연장</a>
-                <div class="meta">2024.07.03</div>
-            </div>
-            <div class="notice-item">
-                <a href="#">시스템 점검 안내 (7월 8일 22:00~23:00)</a>
-                <div class="meta">2024.07.01</div>
-            </div>
-        </div>
-
-        <!-- Board Controls -->
-        <div class="board-controls">
-            <div class="search-box">
-                <input type="text" placeholder="검색어를 입력하세요...">
-                <button class="btn">검색</button>
-            </div>
-            <button class="btn">글쓰기</button>
-        </div>
-
-        <!-- Board Table -->
-        <div class="board-table">
-            <table>
-                <thead>
-                    <tr>
-                        <th style="width: 8%;">번호</th>
-                        <th style="width: 50%;">제목</th>
-                        <th style="width: 15%;">작성자</th>
-                        <th style="width: 15%;">작성일</th>
-                        <th style="width: 12%;">조회</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>125</td>
-                        <td>
-                            <span class="post-category">후기</span>
-                            <a href="#" class="post-title">React 강의 정말 좋아요! 취업도 성공했습니다.</a>
-                        </td>
-                        <td class="post-meta">김지은</td>
-                        <td class="post-meta">2024.07.05</td>
-                        <td class="post-views">342</td>
-                    </tr>
-                    <tr>
-                        <td>124</td>
-                        <td>
-                            <span class="post-category">질문</span>
-                            <a href="#" class="post-title">Python에서 클래스 상속이 이해가 안 갑니다</a>
-                        </td>
-                        <td class="post-meta">이민준</td>
-                        <td class="post-meta">2024.07.04</td>
-                        <td class="post-views">156</td>
-                    </tr>
-                    <tr>
-                        <td>123</td>
-                        <td>
-                            <span class="post-category">정보공유</span>
-                            <a href="#" class="post-title">머신러닝 프로젝트 포트폴리오 만드는 팁</a>
-                        </td>
-                        <td class="post-meta">박준호</td>
-                        <td class="post-meta">2024.07.03</td>
-                        <td class="post-views">521</td>
-                    </tr>
-                    <tr>
-                        <td>122</td>
-                        <td>
-                            <span class="post-category">후기</span>
-                            <a href="#" class="post-title">데이터 분석 강의를 끝내고 취업을 준비 중입니다</a>
-                        </td>
-                        <td class="post-meta">최수진</td>
-                        <td class="post-meta">2024.07.02</td>
-                        <td class="post-views">289</td>
-                    </tr>
-                    <tr>
-                        <td>121</td>
-                        <td>
-                            <span class="post-category">질문</span>
-                            <a href="#" class="post-title">웹 개발에서 데이터베이스 최적화는 어떻게 하나요?</a>
-                        </td>
-                        <td class="post-meta">이준혁</td>
-                        <td class="post-meta">2024.07.01</td>
-                        <td class="post-views">198</td>
-                    </tr>
-                    <tr>
-                        <td>120</td>
-                        <td>
-                            <span class="post-category">정보공유</span>
-                            <a href="#" class="post-title">AI 회사 취업 면접 질문 정리</a>
-                        </td>
-                        <td class="post-meta">김현지</td>
-                        <td class="post-meta">2024.06.30</td>
-                        <td class="post-views">845</td>
-                    </tr>
-                    <tr>
-                        <td>119</td>
-                        <td>
-                            <span class="post-category">후기</span>
-                            <a href="#" class="post-title">인생이 바뀌었어요. 감사합니다!</a>
-                        </td>
-                        <td class="post-meta">박성훈</td>
-                        <td class="post-meta">2024.06.28</td>
-                        <td class="post-views">1,203</td>
-                    </tr>
-                    <tr>
-                        <td>118</td>
-                        <td>
-                            <span class="post-category">질문</span>
-                            <a href="#" class="post-title">딥러닝 모델의 오버피팅을 방지하는 방법</a>
-                        </td>
-                        <td class="post-meta">최은희</td>
-                        <td class="post-meta">2024.06.25</td>
-                        <td class="post-views">267</td>
-                    </tr>
-                    <tr>
-                        <td>117</td>
-                        <td>
-                            <span class="post-category">정보공유</span>
-                            <a href="#" class="post-title">2024년 개발자 트렌드와 배워야 할 기술들</a>
-                        </td>
-                        <td class="post-meta">이미영</td>
-                        <td class="post-meta">2024.06.20</td>
-                        <td class="post-views">634</td>
-                    </tr>
-                    <tr>
-                        <td>116</td>
-                        <td>
-                            <span class="post-category">후기</span>
-                            <a href="#" class="post-title">Python 기초부터 Django까지 완벽하게 배웠습니다</a>
-                        </td>
-                        <td class="post-meta">김동욱</td>
-                        <td class="post-meta">2024.06.18</td>
-                        <td class="post-views">456</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Pagination -->
-        <div class="pagination">
-            <a href="#">◀ 이전</a>
-            <span class="active">1</span>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#">다음 ▶</a>
+        <div class="blog-filter">
+            <span class="filter-tag active">전체</span>
+            <span class="filter-tag">디자인</span>
+            <span class="filter-tag">개발</span>
+            <span class="filter-tag">트렌드</span>
+            <span class="filter-tag">팁</span>
         </div>
     </div>
 
-    <!-- Footer -->
+    <div class="blog-featured">
+        <div class="featured-content">
+            <p style="color: var(--accent); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; font-weight: 600;">Featured Post</p>
+            <h2>2024 웹 디자인 트렌드: 미니멀리즘의 진화</h2>
+            <p>올해의 웹 디자인은 더욱 정제되고 의도적입니다. 화려함을 버리고 본질에 집중하는 미니멀리즘이 어떻게 진화했는지, 그리고 그것이 사용자 경험에 미치는 영향을 살펴봅니다.</p>
+            <p>읽기 시간: 5분 | 2024년 7월 8일</p>
+            <a href="#" class="read-more">전체 읽기 →</a>
+        </div>
+        <div class="featured-image">블로그 이미지</div>
+    </div>
+
+    <div class="blog-content">
+        <div class="blog-grid">
+            <div class="blog-card">
+                <div class="blog-card-image"></div>
+                <div class="blog-card-meta">
+                    <span>📅 2024.07.06</span>
+                    <span>🕐 5분</span>
+                </div>
+                <h3>모바일 우선 설계의 중요성</h3>
+                <p>모바일 사용자가 전체 트래픽의 70% 이상인 시대. 왜 모바일 우선 설계가 필수인지 알아봅니다.</p>
+                <a href="#" class="read-more">읽기 →</a>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image"></div>
+                <div class="blog-card-meta">
+                    <span>📅 2024.07.04</span>
+                    <span>🕐 7분</span>
+                </div>
+                <h3>React 성능 최적화 완벽 가이드</h3>
+                <p>사용자는 빠른 경험을 원합니다. React 애플리케이션의 성능을 극대화하는 방법들을 알아봅시다.</p>
+                <a href="#" class="read-more">읽기 →</a>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image"></div>
+                <div class="blog-card-meta">
+                    <span>📅 2024.07.02</span>
+                    <span>🕐 6분</span>
+                </div>
+                <h3>색상 심리학과 브랜드 정체성</h3>
+                <p>색상은 감정을 전달합니다. 올바른 색상 선택이 브랜드 인식에 미치는 영향을 탐구합니다.</p>
+                <a href="#" class="read-more">읽기 →</a>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image"></div>
+                <div class="blog-card-meta">
+                    <span>📅 2024.06.30</span>
+                    <span>🕐 4분</span>
+                </div>
+                <h3>CSS Grid로 현대적 레이아웃 만들기</h3>
+                <p>플렉스박스를 넘어서. CSS Grid의 강력함을 활용해 복잡한 레이아웃을 쉽게 구현하세요.</p>
+                <a href="#" class="read-more">읽기 →</a>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image"></div>
+                <div class="blog-card-meta">
+                    <span>📅 2024.06.28</span>
+                    <span>🕐 8분</span>
+                </div>
+                <h3>UX 리서치: 사용자를 이해하는 방법</h3>
+                <p>좋은 디자인은 데이터 기반입니다. 효과적인 사용자 리서치 방법들을 소개합니다.</p>
+                <a href="#" class="read-more">읽기 →</a>
+            </div>
+
+            <div class="blog-card">
+                <div class="blog-card-image"></div>
+                <div class="blog-card-meta">
+                    <span>📅 2024.06.26</span>
+                    <span>🕐 5분</span>
+                </div>
+                <h3>Figma 프로토타이핑 팁</h3>
+                <p>Figma를 더 효율적으로 사용하기 위한 고급 프로토타이핑 기법들을 배워봅시다.</p>
+                <a href="#" class="read-more">읽기 →</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="categories">
+        <h2>카테고리</h2>
+        <div class="category-grid">
+            <div class="category-item">
+                <div class="category-icon">🎨</div>
+                <h3>디자인</h3>
+                <p>UI/UX, 브랜드, 타이포그래피</p>
+            </div>
+            <div class="category-item">
+                <div class="category-icon">💻</div>
+                <h3>개발</h3>
+                <p>프론트엔드, 백엔드, DevOps</p>
+            </div>
+            <div class="category-item">
+                <div class="category-icon">📈</div>
+                <h3>트렌드</h3>
+                <p>최신 기술, 시장 분석</p>
+            </div>
+            <div class="category-item">
+                <div class="category-icon">⚡</div>
+                <h3>팁</h3>
+                <p>생산성, 도구, 스킬</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="newsletter">
+        <h2>최신 콘텐츠 구독하기</h2>
+        <p>매주 최신 디자인 & 개발 인사이트를 받아보세요.</p>
+        <form class="newsletter-form">
+            <input type="email" placeholder="당신의 이메일을 입력하세요" required>
+            <button type="submit">구독하기</button>
+        </form>
+    </div>
+
     <footer>
-        <p>&copy; 2024 Tech Academy. All rights reserved.</p>
-        <p><a href="index.html">← 학원 홈페이지로</a></p>
+        <p>&copy; 2024 OKSUSUAPP. All rights reserved.</p>
     </footer>
 </body>
 </html>
