@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>옥수수앱 - 홈페이지 제작 전문 스튜디오</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -23,6 +23,7 @@
             --bg-alt: #F3F8FA;
             --border: #E1EBEF;
             --radius: 20px;
+            --font-serif: 'Nanum Myeongjo', serif;
         }
 
         html {
@@ -236,11 +237,12 @@
         }
 
         .hero h1 {
+            font-family: var(--font-serif);
             font-size: 56px;
             font-weight: 800;
-            line-height: 1.2;
+            line-height: 1.25;
             margin-bottom: 24px;
-            letter-spacing: -1.5px;
+            letter-spacing: -0.5px;
             color: var(--ink);
         }
 
@@ -399,11 +401,12 @@
         }
 
         .section-title {
+            font-family: var(--font-serif);
             font-size: 40px;
             font-weight: 800;
             text-align: center;
             margin-bottom: 60px;
-            letter-spacing: -1px;
+            letter-spacing: -0.5px;
         }
 
         /* Trusted-by strip */
@@ -521,7 +524,7 @@
         }
 
         .why-text { flex: 1; max-width: 480px; }
-        .why-text h2 { font-size: 36px; font-weight: 800; margin-bottom: 24px; letter-spacing: -1px; }
+        .why-text h2 { font-family: var(--font-serif); font-size: 36px; font-weight: 800; margin-bottom: 24px; letter-spacing: -0.5px; }
         .why-text p { font-size: 15.5px; line-height: 1.85; color: rgba(255,255,255,0.75); margin-bottom: 16px; }
         .why-text .btn-primary { margin-top: 16px; }
 
@@ -611,7 +614,7 @@
         }
 
         .process-steps { flex: 1; max-width: 480px; }
-        .process-steps h2 { font-size: 36px; font-weight: 800; margin-bottom: 16px; letter-spacing: -1px; }
+        .process-steps h2 { font-family: var(--font-serif); font-size: 36px; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.5px; }
         .process-steps > p { font-size: 15px; color: var(--gray); margin-bottom: 40px; }
 
         .process-step {
@@ -667,6 +670,7 @@
             transform: translateY(-50%);
             z-index: 1;
             color: #fff;
+            font-family: var(--font-serif);
             font-size: 32px;
             font-weight: 800;
             max-width: 420px;
@@ -684,7 +688,7 @@
             padding: 90px 40px;
         }
 
-        .cta-section h2 { font-size: 36px; font-weight: 800; margin-bottom: 16px; }
+        .cta-section h2 { font-family: var(--font-serif); font-size: 36px; font-weight: 800; margin-bottom: 16px; }
         .cta-section p { font-size: 16px; margin-bottom: 36px; color: rgba(255,255,255,0.85); }
         .cta-section .btn-primary { background: #fff; color: var(--primary-dark); }
         .cta-section .btn-primary:hover { background: var(--navy); color: #fff; }
