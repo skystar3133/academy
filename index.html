@@ -62,7 +62,7 @@
             font-size: 22px;
             font-weight: 800;
             color: var(--ink);
-            letter-spacing: -0.5px;
+            letter-spacing: 3px;
         }
 
         .logo span {
@@ -238,12 +238,17 @@
 
         .hero h1 {
             font-family: var(--font-serif);
-            font-size: 56px;
+            font-size: clamp(36px, 4vw, 56px);
             font-weight: 800;
             line-height: 1.25;
             margin-bottom: 24px;
             letter-spacing: -0.5px;
             color: var(--ink);
+        }
+
+        @media (min-width: 1150px) {
+            .hero-content { max-width: 640px; }
+            .hero h1 { white-space: nowrap; }
         }
 
         .hero h1 em {
@@ -720,6 +725,8 @@
             font-size: 13.5px;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .quote-btn:hover {
@@ -732,88 +739,6 @@
             align-items: center;
             gap: 10px;
         }
-
-        /* 견적서 문의 모달 */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(13, 36, 56, 0.55);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-        }
-
-        .modal-overlay.open {
-            display: flex;
-        }
-
-        .modal-box {
-            background: #fff;
-            border-radius: var(--radius);
-            padding: 40px;
-            max-width: 480px;
-            width: 100%;
-            max-height: 88vh;
-            overflow-y: auto;
-            position: relative;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--bg-alt);
-            border: none;
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            font-size: 16px;
-            cursor: pointer;
-            color: var(--gray);
-        }
-
-        .modal-close:hover { color: var(--ink); }
-
-        .modal-box h2 { font-size: 24px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
-        .modal-box .modal-sub { font-size: 14px; color: var(--gray); margin-bottom: 28px; }
-
-        .form-group { margin-bottom: 18px; }
-        .form-group label {
-            display: block;
-            font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--ink);
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            font-family: inherit;
-            font-size: 14.5px;
-            color: var(--ink);
-            background: var(--bg-alt);
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: #fff;
-        }
-
-        .form-group textarea { min-height: 90px; resize: vertical; }
-
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-
-        .modal-box .btn { width: 100%; text-align: center; margin-top: 6px; }
 
         .footer-bottom {
             grid-column: 1 / -1;
@@ -862,9 +787,6 @@
             .quote-btn { padding: 7px 10px; font-size: 11px; white-space: nowrap; }
             nav .kakao-btn { padding: 7px 10px; font-size: 11px; white-space: nowrap; }
             nav .kakao-btn svg { width: 14px; height: 14px; }
-
-            .modal-box { padding: 28px 22px; }
-            .form-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -881,7 +803,7 @@
             <li><a href="#about">소개</a></li>
         </ul>
         <div class="nav-actions">
-            <button type="button" class="quote-btn" onclick="openQuoteModal()">견적서 문의하기</button>
+            <a href="https://pf.kakao.com/_exmtKX" target="_blank" rel="noopener" class="quote-btn">견적서 문의하기</a>
             <a href="https://pf.kakao.com/_exmtKX" target="_blank" rel="noopener" class="contact-btn kakao-btn">
                 <svg width="18" height="18" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path fill="#391B1B" d="M128 36C70.1 36 24 72.6 24 117.8c0 29.2 19.6 54.8 49 69.2-2.1 7.8-7.7 28.6-8.9 33-1.4 5.3 2 5.2 4.2 3.8 1.7-1.1 27-18.3 38-25.7 6.9 1 14 1.5 21.7 1.5 57.9 0 104-36.6 104-81.8S185.9 36 128 36z"/></svg>
                 카카오톡 문의
@@ -1131,7 +1053,7 @@
     <!-- Footer -->
     <footer>
         <div>
-            <h3 style="display:flex; align-items:center; gap:10px;">
+            <h3 style="display:flex; align-items:center; gap:10px; letter-spacing:3px;">
                 <span class="logo-mark" style="width:30px; height:30px; border-radius:9px; font-size:15px;">🌽</span>
                 옥수수앱
             </h3>
@@ -1168,57 +1090,6 @@
             <p>Designed & Developed with ❤️</p>
         </div>
     </footer>
-
-    <!-- 견적서 문의 모달 -->
-    <div class="modal-overlay" id="quoteModal">
-        <div class="modal-box">
-            <button type="button" class="modal-close" onclick="closeQuoteModal()">✕</button>
-            <h2>견적서 문의하기</h2>
-            <p class="modal-sub">아래 내용을 남겨주시면 확인 후 이메일로 견적서를 보내드립니다.</p>
-            <form id="quoteForm">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="quoteName">이름 / 회사명</label>
-                        <input type="text" id="quoteName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="quoteContact">연락처</label>
-                        <input type="tel" id="quoteContact" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="quoteEmail">이메일</label>
-                    <input type="email" id="quoteEmail" required>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="quoteType">프로젝트 유형</label>
-                        <select id="quoteType">
-                            <option>웹사이트 제작</option>
-                            <option>모바일 앱</option>
-                            <option>브랜드/UI 디자인</option>
-                            <option>기타</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="quoteBudget">예상 예산</label>
-                        <select id="quoteBudget">
-                            <option>300만원 미만</option>
-                            <option>300~500만원</option>
-                            <option>500~1000만원</option>
-                            <option>1000만원 이상</option>
-                            <option>협의 필요</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="quoteMessage">프로젝트 내용</label>
-                    <textarea id="quoteMessage" placeholder="어떤 프로젝트를 계획 중이신가요?" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">견적서 요청 보내기</button>
-            </form>
-        </div>
-    </div>
 
     <!-- 카카오톡 문의 플로팅 버튼 -->
     <a href="https://pf.kakao.com/_exmtKX" target="_blank" rel="noopener" class="kakao-float" aria-label="카카오톡 문의">
@@ -1259,44 +1130,6 @@
             observer.observe(el);
         });
 
-        // 견적서 문의 모달
-        const quoteModal = document.getElementById('quoteModal');
-
-        function openQuoteModal() {
-            quoteModal.classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeQuoteModal() {
-            quoteModal.classList.remove('open');
-            document.body.style.overflow = '';
-        }
-
-        quoteModal.addEventListener('click', (e) => {
-            if (e.target === quoteModal) closeQuoteModal();
-        });
-
-        document.getElementById('quoteForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            const name = document.getElementById('quoteName').value;
-            const contact = document.getElementById('quoteContact').value;
-            const email = document.getElementById('quoteEmail').value;
-            const type = document.getElementById('quoteType').value;
-            const budget = document.getElementById('quoteBudget').value;
-            const message = document.getElementById('quoteMessage').value;
-
-            const subject = `[견적문의] ${name}님 - ${type}`;
-            const body =
-                `이름/회사명: ${name}\n` +
-                `연락처: ${contact}\n` +
-                `이메일: ${email}\n` +
-                `프로젝트 유형: ${type}\n` +
-                `예상 예산: ${budget}\n\n` +
-                `프로젝트 내용:\n${message}`;
-
-            window.location.href = `mailto:hello@oksusuapp.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        });
     </script>
 </body>
 </html>
