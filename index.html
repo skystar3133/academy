@@ -62,10 +62,22 @@
             font-size: 22px;
             font-weight: 800;
             color: var(--ink);
-            letter-spacing: 3px;
         }
 
-        .logo span {
+        .logo-text {
+            display: inline-flex;
+        }
+
+        .logo-text span {
+            display: inline-block;
+            margin-right: 4px;
+        }
+
+        .logo-text span:last-child {
+            margin-right: 0;
+        }
+
+        .logo-text .highlight {
             color: var(--primary);
         }
 
@@ -795,7 +807,7 @@
     <nav>
         <div class="logo">
             <span class="logo-mark">🌽</span>
-            옥<span>수</span>수앱
+            <span class="logo-text"><span>옥</span><span class="highlight">수</span><span>수</span><span>앱</span></span>
         </div>
         <ul>
             <li><a href="#work">작업</a></li>
@@ -1053,9 +1065,9 @@
     <!-- Footer -->
     <footer>
         <div>
-            <h3 style="display:flex; align-items:center; gap:10px; letter-spacing:3px;">
+            <h3 style="display:flex; align-items:center; gap:10px;">
                 <span class="logo-mark" style="width:30px; height:30px; border-radius:9px; font-size:15px;">🌽</span>
-                옥수수앱
+                <span class="logo-text"><span>옥</span><span>수</span><span>수</span><span>앱</span></span>
             </h3>
             <p style="font-size: 13px; line-height: 1.6; margin-bottom: 20px; color: rgba(255,255,255,0.6);">홈페이지 제작 전문 스튜디오<br>당신의 비전을 현실로</p>
         </div>
